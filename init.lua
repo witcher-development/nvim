@@ -201,9 +201,9 @@ require('lazy').setup({
         section_separators = '',
       },
     },
-    { 'rose-pine/neovim', name = 'rose-pine' },
   },
 
+  { 'rose-pine/neovim', name = 'rose-pine' },
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
