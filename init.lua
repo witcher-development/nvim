@@ -190,15 +190,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -210,6 +201,7 @@ require('lazy').setup({
         section_separators = '',
       },
     },
+    { 'rose-pine/neovim', name = 'rose-pine' },
   },
 
   {
@@ -267,6 +259,24 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  --
+    {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    dependencies = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {'williamboman/mason.nvim'},           -- Optional
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+    }
+  }
+
+
 }, {})
 
 -- [[ Setting options ]]
@@ -347,6 +357,10 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    file_ignore_patterns = { 
+      "node_modules",
+      "__pycache__"
+    }
   },
 }
 
@@ -564,11 +578,11 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
+  gopls = {},
+  pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  tsserver = {},
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
     Lua = {
@@ -657,5 +671,19 @@ cmp.setup {
   },
 }
 
+local lsp = require('lsp-zero').preset({})
+
+lsp.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp.default_keymaps({buffer = bufnr})
+end)
+
+-- (Optional) Configure lua language server for neovim
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.setup()
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.cmd('colorscheme rose-pine')
