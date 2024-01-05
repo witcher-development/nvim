@@ -111,7 +111,14 @@ require('lazy').setup({
       'rafamadriz/friendly-snippets',
     },
   },
-
+--
+--  {
+--    'windwp/nvim-autopairs',
+--    event = "InsertEnter",
+--    opts = {}
+--  },
+--  { 'windwp/nvim-ts-autotag', opts = {} },
+--
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
@@ -687,3 +694,30 @@ lsp.setup()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 vim.cmd('colorscheme rose-pine')
+-- Define a function to check if the cursor is in a nested block
+local function is_in_nested_block()
+    -- You can customize this logic based on your file type and indentation
+    -- For example, assuming you're working with Python, you can check for indentation
+    --    return vim.fn.getline('.') : find('^\s*{') and vim.fn.getline(vim.fn.line('.') - 1) : find('^\s*{')
+end
+
+-- Define the function to be called by the mapping
+local function backspace_in_nested_block()
+  print('inside')
+  if vim.fn.getline('.'):match("^%s*$") ~= nil then
+    print('empty line')
+    -- Delete the entire line
+    vim.fn.execute('normal! dd')
+  else
+    print('non empty line')
+    -- Use the default behavior of backspace
+    vim.fn.execute('normal! "\\<BS>"')
+  end
+end
+
+-- vim.keymap.set('i', '<BS>', backspace_in_nested_block)
+-- vim.api.nvim_buf_set_keymap()
+-- vim.keymap.set('n', '<BS>', backspace_in_nested_block, { noremap = true, silent = false })
+
+vim.keymap.set('i', '<BS>', backspace_in_nested_block, { noremap = true, silent = false })
+
