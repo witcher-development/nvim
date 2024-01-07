@@ -441,6 +441,10 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 
 vim.keymap.set('i', 'kj', '<Esc>')
 vim.keymap.set('x', 'v', '<Nop>', { silent = true })
+vim.keymap.set('x', 'd', '"_d', { silent = true })
+vim.keymap.set('n', 'dd', '"_dd', { silent = true })
+vim.keymap.set('x', 'p', 'P', { silent = true })
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
