@@ -440,6 +440,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 
 
 vim.keymap.set('i', 'kj', '<Esc>')
+vim.keymap.set('x', 'v', '<Nop>', { silent = true })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -457,8 +458,8 @@ vim.defer_fn(function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        node_incremental = 'v',
-        node_decremental = 'V'
+        node_incremental = "v",
+        node_decremental = "V",
       },
     },
     textobjects = {
