@@ -438,6 +438,9 @@ vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
+
+vim.keymap.set('i', 'kj', '<Esc>')
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -454,10 +457,8 @@ vim.defer_fn(function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
+        node_incremental = 'v',
+        node_decremental = 'V'
       },
     },
     textobjects = {
@@ -694,30 +695,4 @@ lsp.setup()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 vim.cmd('colorscheme rose-pine')
--- Define a function to check if the cursor is in a nested block
-local function is_in_nested_block()
-    -- You can customize this logic based on your file type and indentation
-    -- For example, assuming you're working with Python, you can check for indentation
-    --    return vim.fn.getline('.') : find('^\s*{') and vim.fn.getline(vim.fn.line('.') - 1) : find('^\s*{')
-end
-
--- Define the function to be called by the mapping
-local function backspace_in_nested_block()
-  print('inside')
-  if vim.fn.getline('.'):match("^%s*$") ~= nil then
-    print('empty line')
-    -- Delete the entire line
-    vim.fn.execute('normal! dd')
-  else
-    print('non empty line')
-    -- Use the default behavior of backspace
-    vim.fn.execute('normal! "\\<BS>"')
-  end
-end
-
--- vim.keymap.set('i', '<BS>', backspace_in_nested_block)
--- vim.api.nvim_buf_set_keymap()
--- vim.keymap.set('n', '<BS>', backspace_in_nested_block, { noremap = true, silent = false })
-
-vim.keymap.set('i', '<BS>', backspace_in_nested_block, { noremap = true, silent = false })
 
