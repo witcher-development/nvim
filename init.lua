@@ -281,8 +281,9 @@ require('lazy').setup({
       {'hrsh7th/cmp-nvim-lsp'}, -- Required
       {'L3MON4D3/LuaSnip'},     -- Required
     }
-  }
-
+  },
+ 
+  { 'joerdav/templ.vim' }
 
 }, {})
 
@@ -444,6 +445,7 @@ vim.keymap.set('x', 'v', '<Nop>', { silent = true })
 vim.keymap.set('x', 'd', '"_d', { silent = true })
 vim.keymap.set('n', 'dd', '"_dd', { silent = true })
 vim.keymap.set('x', 'p', 'P', { silent = true })
+vim.keymap.set('n', 'x', '"_x', { silent = true })
 
 
 -- [[ Configure Treesitter ]]
@@ -452,7 +454,7 @@ vim.keymap.set('x', 'p', 'P', { silent = true })
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'html' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -595,7 +597,9 @@ local servers = {
   pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  html = { filetypes = { 'html', 'templ' } },
+  htmx = { filetypes = { 'html', 'templ' } },
+  templ = {},
 
   lua_ls = {
     Lua = {
@@ -631,6 +635,9 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+vim.filetype.add({ extension = { templ = "templ" } })
+
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
