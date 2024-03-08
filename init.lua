@@ -477,7 +477,7 @@ vim.keymap.set('x', 'd', '"_d', { silent = true })
 vim.keymap.set('n', 'dd', '"_dd', { silent = true })
 vim.keymap.set('x', 'p', 'P', { silent = true })
 vim.keymap.set('n', 'x', '"_x', { silent = true })
-vim.keymap.set('x', 'c', '"_xi', { silent = true })
+vim.keymap.set('x', 'c', '"_c', { silent = true })
 
 
 -- [[ Configure Treesitter ]]
