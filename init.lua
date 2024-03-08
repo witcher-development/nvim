@@ -196,19 +196,20 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
+  { 'feline-nvim/feline.nvim' },
+  -- {
+  --   -- Set lualine as statusline
+  --   'nvim-lualine/lualine.nvim',
+  --   -- See `:help lualine.txt`
+  --   opts = {
+  --     options = {
+  --       icons_enabled = false,
+  --       theme = 'onedark',
+  --       component_separators = '|',
+  --       section_separators = '',
+  --     },
+  --   },
+  -- },
 
   { 'rose-pine/neovim', name = 'rose-pine' },
   {
@@ -387,6 +388,8 @@ require('telescope').setup {
   },
 }
 
+require('feline').setup()
+
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -461,6 +464,7 @@ vim.keymap.set('x', 'd', '"_d', { silent = true })
 vim.keymap.set('n', 'dd', '"_dd', { silent = true })
 vim.keymap.set('x', 'p', 'P', { silent = true })
 vim.keymap.set('n', 'x', '"_x', { silent = true })
+vim.keymap.set('x', 'c', '"_x', { silent = true })
 
 
 -- [[ Configure Treesitter ]]
