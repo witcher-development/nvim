@@ -225,6 +225,8 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
   { 'JoosepAlviste/nvim-ts-context-commentstring', opts = {} },
 
+  { 'nvim-ts-autotag', opts = {} },
+
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
