@@ -222,6 +222,17 @@ require('lazy').setup({
     opts = {},
   },
 
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   { 'JoosepAlviste/nvim-ts-context-commentstring', opts = {} },
@@ -482,6 +493,7 @@ vim.keymap.set('n', 'dd', '"_dd', { silent = true })
 vim.keymap.set('x', 'p', 'P', { silent = true })
 vim.keymap.set('n', 'x', '"_x', { silent = true })
 vim.keymap.set('x', 'c', '"_c', { silent = true })
+vim.keymap.set('n', 'c', '"_c', { silent = true })
 
 
 -- [[ Configure Treesitter ]]
