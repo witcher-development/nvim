@@ -299,7 +299,7 @@ require('lazy').setup({
       {'L3MON4D3/LuaSnip'},     -- Required
     }
   },
- 
+
   { 'joerdav/templ.vim' },
 
   {
@@ -412,12 +412,31 @@ require('telescope').setup {
     },
     file_ignore_patterns = {
       "node_modules",
-      "__pycache__"
+      "__pycache__",
+      ".git/",
+      ".env/",
+      ".venv/",
+      ".idea/",
+      ".yarn/",
+      "playwright-report/",
+      "yarn.lock"
     }
   },
+  pickers = {
+    find_files = {
+      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', '--no-ignore' },
+      hidden = true
+    },
+    live_grep = {
+      additional_args = function(opts)
+        return {"--hidden", "--no-ignore"}
+      end
+    },
+  }
 }
 
 require('feline').setup()
+require('gitsigns').setup()
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
