@@ -62,6 +62,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.relativenumber = true
 
+local TAB_WIDTH = 4
+local set = vim.opt -- set options
+set.tabstop = TAB_WIDTH
+set.softtabstop = TAB_WIDTH
+set.shiftwidth = TAB_WIDTH
+
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
