@@ -119,7 +119,7 @@ require('lazy').setup({
 --    event = "InsertEnter",
 --    opts = {}
 --  },
---  { 'windwp/nvim-ts-autotag', opts = {} },
+ { 'windwp/nvim-ts-autotag', opts = {} },
 --
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
@@ -238,7 +238,7 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
   { 'JoosepAlviste/nvim-ts-context-commentstring', opts = {} },
 
-  { 'nvim-ts-autotag', opts = {} },
+  -- { 'nvim-ts-autotag', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -781,6 +781,7 @@ lsp.setup()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 vim.cmd('colorscheme rose-pine')
+require('nvim-ts-autotag').setup()
 
 vim.api.nvim_create_user_command('F',function()
   pcall(function()
