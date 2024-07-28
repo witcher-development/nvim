@@ -538,6 +538,8 @@ vim.keymap.set('x', 'p', 'P', { silent = true })
 vim.keymap.set('n', 'x', '"_x', { silent = true })
 vim.keymap.set('x', 'c', '"_c', { silent = true })
 vim.keymap.set('n', 'c', '"_c', { silent = true })
+vim.keymap.set('n', 'J', 'j', { silent = true })
+vim.keymap.set('v', 'J', 'j', { silent = true })
 
 
 -- [[ Configure Treesitter ]]
