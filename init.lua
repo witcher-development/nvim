@@ -406,14 +406,32 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+local focus_preview = function(prompt_bufnr)
+  local action_state = require("telescope.actions.state")
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local prompt_win = picker.prompt_win
+  local previewer = picker.previewer
+  local winid = previewer.state.winid
+  local bufnr = previewer.state.bufnr
+  vim.keymap.set("n", "<Tab>", function()
+    vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", prompt_win))
+  end, { buffer = bufnr })
+  vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", winid))
+  -- api.nvim_set_current_win(winid)
+end
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
     mappings = {
+      n = {
+        ['<Tab>'] = focus_preview,
+      },
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<Tab>'] = focus_preview,
       },
     },
     file_ignore_patterns = {
