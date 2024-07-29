@@ -424,6 +424,8 @@ end
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    dynamic_preview_title = true,
+    lajout_strategy = 'vertical',
     mappings = {
       n = {
         ['<Tab>'] = focus_preview,
@@ -438,12 +440,16 @@ require('telescope').setup {
       "node_modules",
       "__pycache__",
       ".git/",
+      ".github/",
       ".env/",
       ".venv/",
       ".idea/",
       ".yarn/",
       "playwright-report/",
-      "yarn.lock"
+      "yarn.lock",
+      ".nx/",
+      ".mailmap",
+      ".angular/"
     }
   },
   pickers = {
