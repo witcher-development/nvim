@@ -463,7 +463,7 @@ require('telescope').setup {
     },
     live_grep = {
       additional_args = function(opts)
-        return {"--hidden", "--no-ignore"}
+        return {"--hidden", "--no-ignore", "--fixed-strings"}
       end
     },
   }
