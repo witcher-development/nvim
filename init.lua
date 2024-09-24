@@ -450,7 +450,8 @@ require('telescope').setup {
       ".nx/",
       ".mailmap",
       ".rollup.cache/",
-      ".angular/"
+      ".angular/",
+      "dist/"
     },
     preview = {
       treesitter = false,
