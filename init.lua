@@ -439,6 +439,7 @@ require('telescope').setup {
     file_ignore_patterns = {
       "node_modules",
       "__pycache__",
+      ".cache",
       ".git/",
       ".github/",
       ".env/",
