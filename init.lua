@@ -220,14 +220,14 @@ require('lazy').setup({
   -- },
 
   { 'rose-pine/neovim', name = 'rose-pine' },
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
+  -- {
+  --   -- Add indentation guides even on blank lines
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   -- Enable `lukas-reineke/indent-blankline.nvim`
+  --   -- See `:help ibl`
+  --   main = 'ibl',
+  --   opts = {},
+  -- },
 
   {
     "kylechui/nvim-surround",
@@ -382,19 +382,19 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
-require("ibl").setup({
-	indent = {
-		char = "▏", -- This is a slightly thinner char than the default one, check :help ibl.config.indent.char
-	},
-	scope = {
-		show_start = false,
-		show_end = false,
-	},
-})
+-- require("ibl").setup({
+-- 	indent = {
+-- 		char = "▏", -- This is a slightly thinner char than the default one, check :help ibl.config.indent.char
+-- 	},
+-- 	scope = {
+-- 		show_start = false,
+-- 		show_end = false,
+-- 	},
+-- })
 -- disable indentation on the first level
-local hooks = require("ibl.hooks")
-hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
+-- local hooks = require("ibl.hooks")
+-- hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+-- hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -827,3 +827,4 @@ vim.api.nvim_create_user_command('F',function()
     require("go.format").goimport()
   end)
 end, {})
+
