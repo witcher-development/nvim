@@ -452,6 +452,7 @@ require('telescope').setup {
       ".mailmap",
       ".rollup.cache/",
       ".angular/",
+      "_templ.go",
       "dist/"
     },
     preview = {
