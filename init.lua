@@ -321,7 +321,7 @@ require('lazy').setup({
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  }
+  },
 
 }, {})
 
@@ -561,7 +561,7 @@ vim.keymap.set('v', 'J', 'j', { silent = true })
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'html' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'html', 'templ', 'css' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -713,9 +713,7 @@ local servers = {
   html = { filetypes = { 'html', 'templ' } },
   htmx = { filetypes = { 'html', 'templ' } },
   templ = {},
-  tailwindcss = {
-    filetypes = { 'html', 'templ' }
-  },
+  tailwindcss = {},
 
   lua_ls = {
     Lua = {
@@ -830,4 +828,3 @@ vim.api.nvim_create_user_command('F',function()
     require("go.format").goimport()
   end)
 end, {})
-
