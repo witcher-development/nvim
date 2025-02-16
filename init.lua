@@ -713,6 +713,9 @@ local servers = {
   html = { filetypes = { 'html', 'templ' } },
   htmx = { filetypes = { 'html', 'templ' } },
   templ = {},
+  tailwindcss = {
+    filetypes = { 'html', 'templ' }
+  },
 
   lua_ls = {
     Lua = {
