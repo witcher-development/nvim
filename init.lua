@@ -710,7 +710,9 @@ local servers = {
   gopls = {},
   pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  tsserver = {
+    root_dir = find_git_root()
+  },
   html = { filetypes = { 'html', 'templ' } },
   htmx = { filetypes = { 'html', 'templ' } },
   templ = {},
