@@ -871,3 +871,25 @@ end, 0)
       require("go.format").goimport()
     end)
   end, {})
+
+-- vim.api.nvim_create_user_command('El', function ()
+--   -- vim.fn.expand
+--   -- vim.api.nvim_buf_get_name(0)
+--   vim.system({'./node_modules/.bin/eslint', vim.fn.expand('%'), '--fix'})
+-- end, {})
+vim.api.nvim_create_user_command("Esl", function()
+  -- Find project root (using git root as base; adapt if needed)
+  local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  if vim.v.shell_error ~= 0 then
+    print("Not inside a git project.")
+    return
+  end
+
+  local file_path = vim.fn.expand("%:p")
+  -- Build eslint command
+  local eslint_cmd = root .. "/node_modules/.bin/eslint " .. file_path .. " --fix"
+
+  -- Run eslint and open results in a split terminal
+  vim.cmd("split | terminal " .. eslint_cmd)
+end, {})
+
