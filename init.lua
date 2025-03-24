@@ -893,3 +893,19 @@ vim.api.nvim_create_user_command("Esl", function()
   vim.cmd("split | terminal " .. eslint_cmd)
 end, {})
 
+
+vim.api.nvim_create_user_command("Nxfm", function()
+  -- Find project root (using git root as base; adapt if needed)
+  local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  if vim.v.shell_error ~= 0 then
+    print("Not inside a git project.")
+    return
+  end
+
+  -- local file_path = vim.fn.expand("%:p")
+  -- Build eslint command
+  local nx_format_cmd = root .. "/node_modules/.bin/nx format:write --uncommitted --sort-root-tsconfig-paths=false"
+
+  -- Run eslint and open results in a split terminal
+  vim.cmd("split | terminal " .. nx_format_cmd)
+end, {})
