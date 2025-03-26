@@ -437,37 +437,39 @@ require('telescope').setup {
         ['<Tab>'] = focus_preview,
       },
     },
-    file_ignore_patterns = {
-      "node_modules",
-      "__pycache__",
-      ".cache",
-      ".git/",
-      ".github/",
-      ".env/",
-      ".venv/",
-      ".idea/",
-      ".yarn/",
-      "playwright-report/",
-      "yarn.lock",
-      ".nx/",
-      ".mailmap",
-      ".rollup.cache/",
-      ".angular/",
-      "_templ.go",
-      "dist/"
-    },
+    -- file_ignore_patterns = {
+    --   "node_modules",
+    --   "__pycache__",
+    --   ".cache",
+    --   ".git/",
+    --   ".github/",
+    --   ".env/",
+    --   ".venv/",
+    --   ".idea/",
+    --   ".yarn/",
+    --   "playwright-report",
+    --   "yarn.lock",
+    --   ".nx/",
+    --   ".mailmap",
+    --   ".rollup.cache/",
+    --   ".angular/",
+    --   "_templ.go",
+    --   "dist/"
+    -- },
     preview = {
       treesitter = false,
     }
   },
   pickers = {
     find_files = {
-      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', '--no-ignore' },
+      -- '--no-ignore'
+      find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
       hidden = true
     },
     live_grep = {
       additional_args = function(opts)
-        return {"--hidden", "--no-ignore", "--fixed-strings"}
+        -- '--no-ignore'
+        return {"--hidden", "--fixed-strings"}
       end
     },
   }
